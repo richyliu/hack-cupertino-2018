@@ -153,7 +153,7 @@ const homeView = app.views.create('#view-home', {
             generateTag();
       }
 
-      $$('#logout').click(() => {
+      $$('#logout').once('click', () => {
         firebase.auth().signOut().then(function () {
           clearInterval(window.refreshInterval);
           app.dialog.alert('Successfully logged out');
@@ -183,7 +183,7 @@ const waterView = app.views.create('#view-water', {
 });
 const healthView = app.views.create('#view-health', {
   url: '/health/',
-  // iosSwipeBack: false
+  iosSwipeBack: false
 });
 const settingsView = app.views.create('#view-settings', {
   url: '/settings/'
@@ -285,11 +285,11 @@ firebase.auth().onAuthStateChanged(function (user) {
         app.data.water.push({
           date: new Date().toISOString().slice(0, 10),
           cups: 0
-        })
+        });
       }
 
       // sleep gotton for today
-      if (app.data.sleep[app.data.sleep.length-1].date == new Date().toISOString().slice(0, 10)) {
+      if (app.data.sleep.length > 0 && app.data.sleep[app.data.sleep.length-1].date == new Date().toISOString().slice(0, 10)) {
         $$('.sleep-badge').hide();
       }
 

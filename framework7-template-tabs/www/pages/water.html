@@ -41,7 +41,11 @@
                     </li>
                     <li>
                         <p>
+                            {{#js_if "this.cur >= 8"}}
+                            Good job! You're hydrated for the day!
+                            {{else}}
                             {{ cur }} cups drank, {{ togo }} more to go!
+                            {{/js_if}}
                         </p>
                     </li>
                 </ul>
@@ -60,6 +64,10 @@
         data: function () {
             let cups = app.data.water[app.data.water.length-1].cups;
             
+            if (cups >= 8) {
+                $$('.water-badge').hide();
+            }
+
             return {
                 cur: Math.round(cups*10)/10,
                 togo: Math.round((8-cups)*10)/10

@@ -100,12 +100,15 @@
                     sleep: sleep
                 });
                 // remove last one
-                app.data.sleep.splice(0, 1);
+                if (app.data.sleep.length > 1)
+                    app.data.sleep.splice(0, 1);
                 
-                // setTimeout(() => {
-                    console.log('on heree');
-                    healthView.router.navigate('/health/', { animate: true, refreshCurrent: true });
-                // }, 1000);
+                console.log('on heree');
+                healthView.router.navigate('/task/', { animate: false, refreshCurrent: true });
+                setTimeout(() => {
+                    healthView.router.navigate('/health/', { animate: false, refreshCurrent: true });
+                }, 50);
+                
 
                 $$('.sleep-badge').hide();
             }
