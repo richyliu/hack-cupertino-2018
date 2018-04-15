@@ -19,11 +19,21 @@ Some notes:
     <meta name="theme-color" content="#2196f3">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
     <title>Health Guru</title>
 
     <link rel="stylesheet" href="framework7/css/framework7.min.css">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/app.css">
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 </head>
 
 <body>
@@ -32,33 +42,20 @@ Some notes:
         <div class="statusbar"></div>
         <!-- Left panel with cover effect-->
         <div class="panel panel-left panel-cover theme-dark">
-            <div class="view">
-                <div class="page">
-                    <div class="navbar">
-                        <div class="navbar-inner">
-                            <div class="title">Left Panel</div>
-                        </div>
-                    </div>
-                    <div class="page-content">
-                        <div class="block">Left panel content goes here</div>
-                    </div>
+          <div class="view">
+            <div class="page">
+              <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="title" id="username-title"></div>
                 </div>
-            </div>
-        </div>
-        <!-- Right panel with reveal effect-->
-        <div class="panel panel-right panel-reveal theme-dark">
-            <div class="view">
-                <div class="page">
-                    <div class="navbar">
-                        <div class="navbar-inner">
-                            <div class="title">Right Panel</div>
-                        </div>
-                    </div>
-                    <div class="page-content">
-                        <div class="block">Right panel content goes here</div>
-                    </div>
+              </div>
+              <div class="page-content">
+                <div class="block">
+                    <a href="#" class="link" id="logout">Logout</a>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Views/Tabs container -->
@@ -81,14 +78,14 @@ Some notes:
                     <a href="#view-health" class="tab-link">
                         <i class="icon f7-icons ios-only">eye<span class="badge color-red sleep-badge">1</span></i>
                         <i class="icon f7-icons ios-only icon-ios-fill">eye_fill<span class="badge color-red sleep-badge">1</span></i>
-                        <i class="icon material-icons md-only">eye</i>
+                        <i class="icon material-icons md-only">remove_red_eye</i>
                         <span class="tabbar-label">Sleep</span>
                     </a>
-                    <a href="#view-meditation" class="tab-link">
-                        <i class="icon f7-icons ios-only">heart<span class="badge color-red meditation-badge" style="display: none">1</span></i>
-                        <i class="icon f7-icons ios-only icon-ios-fill">heart_fill<span class="badge color-red meditation-badge" style="display: none">1</span></i>
-                        <i class="icon material-icons md-only">heart</i>
-                        <span class="tabbar-label">Meditation</span>
+                    <a href="#view-water" class="tab-link">
+                        <i class="icon f7-icons ios-only">heart</i>
+                        <i class="icon f7-icons ios-only icon-ios-fill">heart_fill</i>
+                        <i class="icon material-icons md-only">assignment</i>
+                        <span class="tabbar-label">Water</span>
                     </a>
                     <a href="#view-settings" class="tab-link">
                         <i class="icon f7-icons ios-only">settings</i>
@@ -105,7 +102,7 @@ Some notes:
 
             <div id="view-health" class="view tab"></div>
 
-            <div id="view-meditation" class="view tab"></div>
+            <div id="view-water" class="view tab"></div>
 
             <div id="view-settings" class="view tab"></div>
 
@@ -164,7 +161,7 @@ Some notes:
                                             <div class="item-title">Urgency</div>
                                             <div class="item-after">
                                                 <label class="toggle toggle-init">
-                                                    <input type="checkbox" value="true" name="urgent">
+                                                    <input type="checkbox" value="true" name="urgent" id="urgent">
                                                     <span class="toggle-icon"></span>
                                                 </label>
                                             </div>
@@ -214,7 +211,7 @@ Some notes:
         </div>
 
         <!-- Login Screen -->
-        <div class="login-screen" id="my-login-screen">
+        <div class="login-screen" id="base-login-screen">
             <div class="view">
                 <div class="page">
                     <div class="page-content login-screen-content">
@@ -223,9 +220,9 @@ Some notes:
                             <ul>
                                 <li class="item-content item-input">
                                     <div class="item-inner">
-                                        <div class="item-title item-label">Username</div>
+                                        <div class="item-title item-label">Email</div>
                                         <div class="item-input-wrap">
-                                            <input type="text" name="username" placeholder="Your username">
+                                            <input type="email" name="username" placeholder="Your email" id="sign-in-username" validate required>
                                         </div>
                                     </div>
                                 </li>
@@ -233,7 +230,7 @@ Some notes:
                                     <div class="item-inner">
                                         <div class="item-title item-label">Password</div>
                                         <div class="item-input-wrap">
-                                            <input type="password" name="password" placeholder="Your password">
+                                            <input type="password" name="password" placeholder="Your password" id="sign-in-password" validate required>
                                         </div>
                                     </div>
                                 </li>
@@ -242,21 +239,73 @@ Some notes:
                         <div class="list">
                             <ul>
                                 <li>
-                                    <a href="#" class="item-link list-button login-button">Sign In</a>
+                                    <a href="#" class="item-link list-button login-button" id="sign-in">Sign In</a>
                                 </li>
                             </ul>
-                            <div class="block-footer">Some text about login information.
-                                <br>Click "Sign In" to close Login Screen</div>
+                            <div class="block-footer">
+                                <p>
+                                    An account is required to use this app
+                                </p>
+                                <p>
+                                    <a href="#" class="link login-button" id="sign-up-screen">Sign Up</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Sign up Screen -->
+        <div class="login-screen" id="signup-screen">
+                <div class="view">
+                    <div class="page">
+                        <div class="page-content login-screen-content">
+                            <div class="login-screen-title">Sign up</div>
+                            <div class="list">
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Email</div>
+                                            <div class="item-input-wrap">
+                                                <input type="email" name="username" placeholder="Your email" id="sign-up-username" validate required>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Password</div>
+                                            <div class="item-input-wrap">
+                                                <input type="password" name="password" placeholder="Your password" id="sign-up-password" pattern=".{6,}" data-error-message="6 characters minimum" validate required>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="item-link list-button login-button" id="sign-up">Sign up</a>
+                                    </li>
+                                </ul>
+                                <div class="block-footer">
+                                    <p>
+                                        <a href="#" class="link login-button" id="sign-up-cancel">Cancel</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
     </div>
     <!-- Cordova -->
     <!--
 <script src="cordova.js"></script>
 -->
+
 
     <!-- Framework7 library -->
     <script src="framework7/js/framework7.min.js"></script>

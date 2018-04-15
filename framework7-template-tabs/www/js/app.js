@@ -1,3 +1,20 @@
+// Set the configuration for your app
+// TODO: Replace with your project's config object
+var config = {
+  apiKey: "AIzaSyAmloi92FLNSVYqHqlraQVcPZhxJiwu8ik",
+  authDomain: "health-guru-66548.firebaseapp.com",
+  databaseURL: "https://health-guru-66548.firebaseio.com",
+  projectId: "health-guru-66548",
+  storageBucket: "health-guru-66548.appspot.com",
+  messagingSenderId: "843678247299"
+};
+firebase.initializeApp(config);
+
+// Get a reference to the database service
+var database = firebase.database();
+
+
+
 // Dom7
 var $$ = Dom7;
 
@@ -11,66 +28,67 @@ var app = new Framework7({
   data: function () {
     return {
       happiness: 25,
+      happinessBoost: 0,
       tasks: [
         {
           name: 'Essay',
           category: 'Lit',
           date: '2018-4-20',
-          urgent: []
+          urgent: true
         },
         {
           name: 'Essay(x2)',
           category: 'Lit',
           date: '2018-4-20',
-          urgent: [""]
+          urgent: false
         },
         {
           name: 'Temp check',
           category: 'Bio',
           date: '2018-4-21',
-          urgent: [""]
+          urgent: true
         },
         {
           name: 'Chapter 14 quiz',
           category: 'Math',
           date: '2018-4-12',
-          urgent: [""]
+          urgent: true
         },
         {
           name: 'Volleyball test',
           category: 'P.E.',
           date: '2018-4-10',
-          urgent: [""]
+          urgent: true
         },
       ],
       done: [],
       sleep: [
         {
-          date: new Date('2018-4-8'),
+          date: '2018-4-8',
           sleep: 7
         },
         {
-          date: new Date('2018-4-9'),
+          date: '2018-4-9',
           sleep: 6
         },
         {
-          date: new Date('2018-4-10'),
+          date: '2018-4-10',
           sleep: 7
         },
         {
-          date: new Date('2018-4-11'),
+          date: '2018-4-11',
           sleep: 6
         },
         {
-          date: new Date('2018-4-12'),
+          date: '2018-4-12',
           sleep: 7
         },
         {
-          date: new Date('2018-4-13'),
+          date: '2018-4-13',
           sleep: 6
         },
         {
-          date: new Date('2018-4-14'),
+          date: '2018-4-14',
           sleep: 7
         }
       ],
@@ -80,7 +98,12 @@ var app = new Framework7({
         'P.E.',
         'Math'
       ],
-
+      water: [
+        {
+          date: '2018-04-15',
+          cups: 7.4
+        }
+      ]
     };
   },
   // App root methods
@@ -95,13 +118,36 @@ var app = new Framework7({
 
 // Init/Create views
 var homeView = app.views.create('#view-home', {
-  url: '/home/'
+  url: '/home/',
+  on: {
+    pageInit: function () {
+      $$('#logout').click(() => {
+        firebase.auth().signOut().then(function () {
+          clearInterval(window.refreshInterval);
+          app.dialog.alert('Successfully logged out');
+          app.loginScreen.open('#base-login-screen');
+        }).catch(function (error) {
+          app.dialog.alert('Unable to log out');
+        });
+      });
+    }
+  }
 });
 var taskView = app.views.create('#view-task', {
   url: '/task/'
 });
-var meditationView = app.views.create('#view-meditation', {
-  url: '/meditation/'
+var waterView = app.views.create('#view-water', {
+  url: '/water/',
+  on: {
+    pageInit: function() {
+      // initial draw @ 50% here
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.fillStyle = '#4286f4';
+      ctx.strokeRect(100, 20, 100, 100);
+      ctx.fillRect(100, 70, 100, 50);
+    }
+  }
 });
 var healthView = app.views.create('#view-health', {
   url: '/health/',
@@ -127,7 +173,7 @@ $$('#my-login-screen .login-button').on('click', function () {
 
 
 function reload(name) {
-  app.router.navigate(`/${name}/`, { reloadCurrent: true,  })
+  app.router.navigate(`/${name}/`, { reloadCurrent: true, })
 }
 
 
@@ -144,3 +190,98 @@ $$('#view-meditation').on('tab:show', () => {
     }
   })
 })
+
+
+app.loginScreen.open('#base-login-screen');
+
+$$('#sign-in').click(() => {
+  let username = $$('#sign-in-username').val();
+  let password = $$('#sign-in-password').val();
+  firebase.auth().signInWithEmailAndPassword(username, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.error(errorCode, errorMessage);
+    app.dialog.alert(errorMessage);
+  });
+});
+
+$$('#sign-up-screen').click(() => {
+  app.loginScreen.open('#signup-screen');
+});
+
+$$('#sign-up-cancel').click(() => {
+  app.loginScreen.close('#signup-screen');
+})
+
+$$('#sign-up').click(() => {
+  let username = $$('#sign-up-username').val();
+  let password = $$('#sign-up-password').val();
+  firebase.auth().createUserWithEmailAndPassword(username, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.error(errorCode, errorMessage);
+    app.dialog.alert(errorMessage);
+  });
+});
+
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    // clear inputs
+    $$('#sign-in-username').val('');
+    $$('#sign-in-password').val('');
+    $$('#sign-up-username').val('');
+    $$('#sign-up-password').val('');
+
+    app.loginScreen.close('#base-login-screen');
+    app.loginScreen.close('#signup-screen');
+
+    $$('#username-title').html(user.email);
+
+    // get user data
+    firebase.database().ref(user.uid).on('value', snapshot => {
+      app.data = Object.assign({
+        happiness: 100,
+        happinessBoost: 0,
+        tasks: [],
+        done: [],
+        sleep: [],
+        categories: [],
+        water: [],
+      }, snapshot.val());
+
+      // new day/no previous data
+      if (app.data.water.length == 0 || app.data.water[app.data.water.length-1].date != new Date().toISOString().slice(0, 10)) {
+        app.data.water.push({
+          date: new Date().toISOString().slice(0, 10),
+          cups: 0
+        })
+      }
+
+      // sleep gotton for today
+      if (app.data.sleep[app.data.sleep.length-1].date == new Date().toISOString().slice(0, 10)) {
+        $$('.sleep-badge').hide();
+      }
+
+      //reload screens
+      homeView.router.navigate('/home/', { reloadCurrent: true });
+      taskView.router.navigate('/task/', { reloadCurrent: true });
+      healthView.router.navigate('/health/', { reloadCurrent: true });
+      settingsView.router.navigate('/settings/', { reloadCurrent: true });
+      waterView.router.navigate('/water/', { reloadCurrent: true });
+    });
+
+
+    function firebaseSync() {
+      console.log('pushing to firebase...');
+      firebase.database().ref(user.uid).set(app.data);
+    }
+
+    // window.refreshInterval = setInterval(firebaseSync, 30 * 1000);
+    window.onbeforeunload = firebaseSync;
+  } else {
+    // No user is signed in.
+  }
+});

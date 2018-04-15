@@ -12,6 +12,10 @@ routes = [
     componentUrl: './pages/meditation.html',
   },
   {
+    path: '/water/',
+    componentUrl: './pages/water.html',
+  },
+  {
     path: '/health/',
     componentUrl: './pages/health.html',
   },

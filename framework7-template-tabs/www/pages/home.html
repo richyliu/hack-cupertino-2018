@@ -6,17 +6,11 @@
             <div class="navbar-inner">
                 <div class="left">
                     <a href="#" class="link icon-only panel-open" data-panel="left">
-                        <i class="icon f7-icons ios-only">menu</i>
-                        <i class="icon material-icons md-only">menu</i>
+                    <i class="icon f7-icons ios-only">menu</i>
+                    <i class="icon material-icons md-only">menu</i>
                     </a>
                 </div>
                 <div class="title sliding">Health Guru</div>
-                <div class="right">
-                    <a href="#" class="link icon-only panel-open" data-panel="right">
-                        <i class="icon f7-icons ios-only">menu</i>
-                        <i class="icon material-icons md-only">menu</i>
-                    </a>
-                </div>
             </div>
         </div>
 
@@ -43,6 +37,7 @@
             {{#js_if "this.happiness < 50 && this.happiness > 10"}}
             <div class="block block-strong">
                 <p>Oh no! You seem to be really unhappy :(. Do some meditations to boost your happiness!</p>
+                <a class="link" href="/meditation/">Meditations</a>
             </div>
             {{/js_if}}
 
@@ -96,6 +91,7 @@
                     }
                 }
             }
+            happy += app.data.happinessBoost;
 
             // check bounds!
             if (happy > 100) happy = 100;
@@ -106,16 +102,15 @@
             let color;
             if (happy < 25)
                 color = 'color-red';
-            else if (happy < 50) {
+            else if (happy < 50)
                 color = 'color-orange';
-                $$('.meditation-badge').show();
-            } else if (happy < 75)
+            else if (happy < 75)
                 color = 'color-yellow';
             else   
                 color = 'color-green';
 
             return {
-                happiness: this.$app.data.happiness,
+                happiness: app.data.happiness,
                 quote: a[Math.floor(Math.random() * 100)],
                 color: color
             };

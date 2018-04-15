@@ -2,13 +2,19 @@
     <div class="page">
         <div class="navbar">
             <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
                 <div class="title">Meditation</div>
             </div>
         </div>
 
-        <div class="page-component">
+        <div class="page-content">
             <div class="block block-strong">
-                <iframe src="https://www.youtube.com/embed/5PIBMLvcAzc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {{video}}
             </div>
             <!-- <button class="button" @click="watched">I watched it!</button>                 -->
         </div>
@@ -23,18 +29,12 @@
     return {
         // Component Data
         data: function () {
-            // Must return an object
+            const videos = ["<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/1ZYbU82GVz4\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/WivH_CMGWvg\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/cSP3AOl07h0\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/qlKhkxBvqyI\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/fuTAlL4kpVQ\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>"]
+
+            app.data.happinessBoost += 25;
             return {
-                name: 'Jimmy',
-                age: 25,
-                like: ['Tennis', 'Chess', 'Football'],
-            }
-        },
-        // Component Methods
-        methods: {
-            watched: function () {
-                app.data.watched++;
-            }
+                video: videos[Math.floor(Math.random() * 5)]
+            };
         }
     }
 </script>

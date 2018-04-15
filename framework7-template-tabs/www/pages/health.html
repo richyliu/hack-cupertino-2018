@@ -47,7 +47,7 @@
                             <div class="item-content">
                                 <div class="item-inner">
                                     <div class="item-title">{{sleep}} hours</div>
-                                    <div class="item-after">{{js "this.date.toISOString().slice(0, 10)"}}</div>
+                                    <div class="item-after">{{js "new Date(this.date).toISOString().slice(0, 10)"}}</div>
                                 </div>
                             </div>
                         </li>
@@ -68,7 +68,7 @@
         data: function () {
             if (app.data.sleep.length == 0) return { show: true };
 
-            let lastDate = app.data.sleep[app.data.sleep.length - 1].date;
+            let lastDate = new Date(app.data.sleep[app.data.sleep.length - 1].date);
 
             // show if last day is different than this day
             return {
@@ -94,7 +94,7 @@
                 }
 
                 app.data.sleep.push({
-                    date: new Date(),
+                    date: new Date().toISOString().slice(0, 10),
                     sleep: sleep
                 });
                 // remove last one

@@ -1,0 +1,90 @@
+<template>
+    <!-- Page, data-name contains page name which can be used in page callbacks -->
+    <div class="page">
+        <!-- Top Navbar -->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="title sliding">Water</div>
+            </div>
+        </div>
+
+        <!-- Scrollable page content-->
+        <div class="page-content">
+
+            <div class="block-title">
+                How much did you drink?
+            </div>
+            <div class="block block-strong">
+                <canvas id="canvas" style="width: 300px; height: 200px;"></canvas>
+            </div>
+
+            <div class="list simple-list">
+                <ul>
+                    <li>
+                        <div class="item-cell width-auto flex-shrink-0">
+                            <i class="icon f7-icons ios-only">circle</i>
+                            <i class="icon material-icons md-only">brightness_low</i>
+                        </div>
+                        <div class="item-cell flex-shrink-3">
+                            <!-- range slider, enable labels -->
+                            <div class="range-slider range-slider-init color-blue">
+                                <input type="range" min="0" max="100" step="1" value="50" id="water-slider" @input="change">
+                            </div>
+                        </div>
+                        <div class="item-cell width-auto flex-shrink-0">
+                            <i class="icon f7-icons ios-only">circle_fill</i>
+                            <i class="icon material-icons md-only">brightness_high</i>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="button" @click="updateWater">Add</button>
+                    </li>
+                    <li>
+                        <p>
+                            {{ cur }} cups drank, {{ togo }} more to go!
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+<script>
+    return {
+        // Component Data
+        data: function () {
+            let cups = app.data.water[app.data.water.length-1].cups;
+            console.log(cups);
+            
+            return {
+                cur: Math.round(cups*10)/10,
+                togo: Math.round((8-cups)*10)/10
+            }
+        },
+        // Component Methods
+        methods: {
+            updateWater: function() {
+                app.data.water[app.data.water.length-1].cups += $$('#water-slider').val()/100;
+
+                waterView.router.navigate('/water/', {reloadCurrent: true});
+            },
+            change: function(e) {
+                let amt = parseInt($$(e.path[0]).val());
+                amt = 100-amt;
+                
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, 300, 200);
+                ctx.fillStyle = '#4286f4';
+                ctx.strokeRect(100, 20, 100, 100);
+                ctx.fillRect(100, 20+amt, 100, 100-amt);
+            }
+        }
+    }
+</script>
