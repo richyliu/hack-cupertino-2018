@@ -83,7 +83,6 @@
                 let sleep = 0;
                 let b = parseInt(d.bedtime.slice(0, 2));
                 let w = parseInt(d.wakeup.slice(0, 2));
-                console.log(b, w);
 
                 if (b >= 12) {
                     sleep = (24 - b) + w;
@@ -99,6 +98,8 @@
                 app.data.sleep.splice(0, 1)
 
                 healthView.router.navigate('/health/', { animate: false, refreshCurrent: true });
+
+                $$('.sleep-badge').hide();
             }
         }
     }

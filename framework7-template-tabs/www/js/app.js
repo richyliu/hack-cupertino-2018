@@ -19,6 +19,12 @@ var app = new Framework7({
           urgent: []
         },
         {
+          name: 'Essay(x2)',
+          category: 'Lit',
+          date: '2018-4-20',
+          urgent: [""]
+        },
+        {
           name: 'Temp check',
           category: 'Bio',
           date: '2018-4-21',
@@ -73,7 +79,8 @@ var app = new Framework7({
         'Bio',
         'P.E.',
         'Math'
-      ]
+      ],
+
     };
   },
   // App root methods
@@ -97,7 +104,8 @@ var meditationView = app.views.create('#view-meditation', {
   url: '/meditation/'
 });
 var healthView = app.views.create('#view-health', {
-  url: '/health/'
+  url: '/health/',
+  iosSwipeBack: false
 });
 var settingsView = app.views.create('#view-settings', {
   url: '/settings/'
@@ -119,10 +127,20 @@ $$('#my-login-screen .login-button').on('click', function () {
 
 
 function reload(name) {
-  app.router.navigate(`/${name}/`, { reloadCurrent: true })
+  app.router.navigate(`/${name}/`, { reloadCurrent: true,  })
 }
 
 
 $$('#view-home').on('tab:show', () => {
   homeView.router.navigate('/home/', { reloadCurrent: true });
 });
+
+$$('#view-meditation').on('tab:show', () => {
+  console.log('test');
+
+  $$('.meditation-badge').forEach(item => {
+    if ($$(item).prop('style').display == "") {
+      $$(item).hide();
+    }
+  })
+})

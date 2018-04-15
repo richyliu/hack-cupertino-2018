@@ -7,7 +7,10 @@
         </div>
 
         <div class="page-component">
+            <div class="block block-strong">
                 <iframe src="https://www.youtube.com/embed/5PIBMLvcAzc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <!-- <button class="button" @click="watched">I watched it!</button>                 -->
         </div>
     </div>
 </template>
@@ -29,10 +32,9 @@
         },
         // Component Methods
         methods: {
-            openAlert: function () {
-                var self = this;
-                self.$app.dialog.alert('Hello World');
-            },
+            watched: function () {
+                app.data.watched++;
+            }
         }
     }
 </script>

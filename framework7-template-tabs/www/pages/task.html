@@ -28,7 +28,7 @@
                             <div class="item-content">
                                 <div class="item-inner">
                                     <div class="item-title-row">
-                                        <div class="item-title">{{name}}</div>
+                                        <div class="item-title" {{#js_if "new Date(this.date) < new Date()"}}style="color: red"{{/js_if}}>{{name}}</div>
                                         <div class="item-after">{{category}}</div>
                                     </div>
                                     <div class="item-text">
@@ -57,6 +57,15 @@
     return {
         // Component Data
         data: function () {
+
+            // sort by due date
+            app.data.tasks.sort((a, b) => {
+                if (a.date == b.date)
+                    return !(a.urgent && !b.urgent);
+                else
+                    return new Date(a.date) > new Date(b.date);
+            });
+
             // Must return an object
             return {
                 tasks: this.$app.data.tasks
@@ -79,6 +88,12 @@
 
                     console.log(app.form.convertToData('#task-popup-form'));
                     app.data.tasks.push(app.form.convertToData('#task-popup-form'));
+
+                    // sort by due date
+                    app.data.tasks.sort((a, b) => {
+                        console.log(new Date(a));
+                        return new Date(a) > new Date(b);
+                    });
 
                     taskView.router.navigate('/task/', {reloadCurrent: true})
                 });

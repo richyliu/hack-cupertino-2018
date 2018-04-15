@@ -26,6 +26,9 @@
                 Welcome to Health Guru!
             </div>
 
+            <div class="block-header">
+                Inspirational quote
+            </div>
             <div class="block block-strong">
                 {{quote}}
             </div>
@@ -37,11 +40,19 @@
                 </div>
             </div>
 
-            {{#js_if "this.happiness < 50"}}
+            {{#js_if "this.happiness < 50 && this.happiness > 10"}}
             <div class="block block-strong">
                 <p>Oh no! You seem to be really unhappy :(. Do some meditations to boost your happiness!</p>
             </div>
             {{/js_if}}
+
+            {{#js_if "this.happiness < 10"}}
+            <div class="block block-strong">
+                <p>u shuld kill urself :)))))</p>
+            </div>
+            {{/js_if}}
+
+            
         </div>
     </div>
 </template>
@@ -95,9 +106,10 @@
             let color;
             if (happy < 25)
                 color = 'color-red';
-            else if (happy < 50)
+            else if (happy < 50) {
                 color = 'color-orange';
-            else if (happy < 75)
+                $$('.meditation-badge').show();
+            } else if (happy < 75)
                 color = 'color-yellow';
             else   
                 color = 'color-green';
