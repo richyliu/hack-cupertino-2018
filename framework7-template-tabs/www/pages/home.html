@@ -43,7 +43,8 @@
 
             {{#js_if "this.happiness < 10"}}
             <div class="block block-strong">
-                <p>u shuld kill urself :)))))</p>
+                <p>You are quite unhappy! Try to seek professional medical advice. Try to</p>
+                <a class="link" href="/meditation/">Meditate</a>
             </div>
             {{/js_if}}
 
@@ -114,13 +115,6 @@
                 quote: a[Math.floor(Math.random() * 100)],
                 color: color
             };
-        },
-        // Component Methods
-        methods: {
-            openAlert: function () {
-                var self = this;
-                self.$app.dialog.alert('Hello World');
-            },
         }
     }
 </script>

@@ -18,7 +18,7 @@
         <div class="page-content">
 
             <div class="block-title">
-                Tasks
+                TODO
             </div>
             <div class="list media-list">
                 <ul>
@@ -95,8 +95,7 @@
 
                     // sort by due date
                     app.data.tasks.sort((a, b) => {
-                        console.log(new Date(a));
-                        return new Date(a) > new Date(b);
+                        return new Date(a.date) > new Date(b.date);
                     });
 
                     taskView.router.navigate('/task/', { reloadCurrent: true })

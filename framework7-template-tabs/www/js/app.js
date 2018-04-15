@@ -117,10 +117,42 @@ var app = new Framework7({
 });
 
 // Init/Create views
-var homeView = app.views.create('#view-home', {
+const homeView = app.views.create('#view-home', {
   url: '/home/',
   on: {
-    pageInit: function () {
+    pageInit: function (e) {
+      if (e.name == 'meditation') {
+        var penColor = 'white';
+
+            window.setPixelColor = function(pixel) {
+            pixel.style.backgroundColor = penColor;
+            }
+
+            window.setPenColor = function(color) {
+            penColor = color;
+            }
+
+            window.reloadPage = function() {
+                window.location.reload();
+            }
+
+            window.getRandomImg = function() {
+                var a = Math.floor(Math.random() * 3);
+
+                if (a == 0) { return ("java.png"); }
+                else if (a == 1) { return ("bee.png"); }
+                else { return ("fire.png"); }
+            }
+
+            function generateTag() {
+                var img = document.createElement('img');
+                img.setAttribute('src', getRandomImg());
+                document.getElementById('img-container').appendChild(img);
+            }
+
+            generateTag();
+      }
+
       $$('#logout').click(() => {
         firebase.auth().signOut().then(function () {
           clearInterval(window.refreshInterval);
@@ -133,10 +165,10 @@ var homeView = app.views.create('#view-home', {
     }
   }
 });
-var taskView = app.views.create('#view-task', {
+const taskView = app.views.create('#view-task', {
   url: '/task/'
 });
-var waterView = app.views.create('#view-water', {
+const waterView = app.views.create('#view-water', {
   url: '/water/',
   on: {
     pageInit: function() {
@@ -149,19 +181,19 @@ var waterView = app.views.create('#view-water', {
     }
   }
 });
-var healthView = app.views.create('#view-health', {
+const healthView = app.views.create('#view-health', {
   url: '/health/',
-  iosSwipeBack: false
+  // iosSwipeBack: false
 });
-var settingsView = app.views.create('#view-settings', {
+const settingsView = app.views.create('#view-settings', {
   url: '/settings/'
 });
 
 
 // Login Screen Demo
 $$('#my-login-screen .login-button').on('click', function () {
-  var username = $$('#my-login-screen [name="username"]').val();
-  var password = $$('#my-login-screen [name="password"]').val();
+  const username = $$('#my-login-screen [name="username"]').val();
+  const password = $$('#my-login-screen [name="password"]').val();
 
   // Close login screen
   app.loginScreen.close('#my-login-screen');
@@ -171,10 +203,6 @@ $$('#my-login-screen .login-button').on('click', function () {
 });
 
 
-
-function reload(name) {
-  app.router.navigate(`/${name}/`, { reloadCurrent: true, })
-}
 
 
 $$('#view-home').on('tab:show', () => {

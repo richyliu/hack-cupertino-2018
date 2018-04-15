@@ -8,7 +8,7 @@
 
         <div class="page-content">
             <div class="block block-strong">
-                Enter in when you went to sleep and woke up last night.
+                When did you sleep last night and wake up this morning? {{rand}}
             </div>
 
             {{#if show}}
@@ -54,6 +54,7 @@
                         {{/each}}
                     </ul>
                 </div>
+            </div>
         </div>
     </div>
 </template>
@@ -73,7 +74,8 @@
             // show if last day is different than this day
             return {
                 show: lastDate.toISOString().slice(0, 10) != new Date().toISOString().slice(0, 10),
-                prev: app.data.sleep
+                prev: app.data.sleep,
+                rand: Math.random()
             }
         },
         // Component Methods
@@ -87,7 +89,7 @@
                 let w = parseInt(d.wakeup.slice(0, 2));
                 console.log(b, w);
 
-                if (b >= 12) {
+                if (b > w) {
                     sleep = (24 - b) + w;
                 } else {
                     sleep = w - b;
@@ -98,9 +100,12 @@
                     sleep: sleep
                 });
                 // remove last one
-                app.data.sleep.splice(0, 1)
-
-                healthView.router.navigate('/health/', { animate: false, refreshCurrent: true });
+                app.data.sleep.splice(0, 1);
+                
+                // setTimeout(() => {
+                    console.log('on heree');
+                    healthView.router.navigate('/health/', { animate: true, refreshCurrent: true });
+                // }, 1000);
 
                 $$('.sleep-badge').hide();
             }

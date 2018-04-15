@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+    <div class="page" data-name="meditation">
         <div class="navbar">
             <div class="navbar-inner sliding">
                 <div class="left">
@@ -13,10 +13,471 @@
         </div>
 
         <div class="page-content">
+            <div class="block-title">Watch this relaxing video!</div>
             <div class="block block-strong">
                 {{video}}
             </div>
-            <!-- <button class="button" @click="watched">I watched it!</button>                 -->
+            <div class="block-title">PixelBucket</div>
+            <div class="block block-strong">
+                <div id="palette">
+                    <div id="row2">
+                        <div class="pen" style="background-color:white" onclick="setPenColor('white')"> </div>
+                        <div class="pen" style="background-color:black" onclick="setPenColor('black')"> </div>
+                        <div class="pen" style="background-color:red" onclick="setPenColor('red')"> </div>
+                        <div class="pen" style="background-color:orange" onclick="setPenColor('orange')"> </div>
+                        <div class="pen" style="background-color:#FFEE58" onclick="setPenColor('#FFEE58')"> </div>
+                        <div class="pen" style="background-color:chartreuse" onclick="setPenColor('chartreuse')"> </div>
+                        <div class="pen" style="background-color:blue" onclick="setPenColor('blue')"> </div>
+                        <div class="pen" style="background-color:#9C27B0" onclick="setPenColor('#9C27B0')"> </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div id="art">
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                        <div class="row">
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                            <div class="pixel" onclick="setPixelColor(this)"></div>
+                        </div>
+                    </div>
+                    <div id="img-container"></div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -29,7 +490,8 @@
     return {
         // Component Data
         data: function () {
-            const videos = ["<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/1ZYbU82GVz4\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/WivH_CMGWvg\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/cSP3AOl07h0\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/qlKhkxBvqyI\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/fuTAlL4kpVQ\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>"]
+            const videos = ["<iframe src=\"https://www.youtube.com/embed/1ZYbU82GVz4\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe src=\"https://www.youtube.com/embed/WivH_CMGWvg\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe src=\"https://www.youtube.com/embed/cSP3AOl07h0\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe src=\"https://www.youtube.com/embed/qlKhkxBvqyI\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe src=\"https://www.youtube.com/embed/fuTAlL4kpVQ\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>"]
+            
 
             app.data.happinessBoost += 25;
             return {
