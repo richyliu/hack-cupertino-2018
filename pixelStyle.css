@@ -1,0 +1,38 @@
+#art {
+  display: inline-block;
+  border-spacing: 2px;
+  background-color: white;
+  border: 5px solid white;
+}  
+
+.row {
+  display: table-row;  
+}
+
+.row2 {
+  display: table-row;
+}
+
+.pixel {
+  display: table-cell;
+  background-color: black;
+  width: 20px;
+  height: 20px;
+}
+
+.pen {
+  display:inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+}
+
+#img-container {
+    margin-left: 60px;
+    vertical-align: top;
+    display: inline;
+}
+
+img {
+    width: 440px;
+}
