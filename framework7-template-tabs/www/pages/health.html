@@ -8,7 +8,7 @@
 
         <div class="page-content">
             <div class="block block-strong">
-                When did you sleep last night and wake up this morning? {{rand}}
+                When did you sleep last night and wake up this morning?
             </div>
 
             {{#if show}}
@@ -40,20 +40,23 @@
             {{/if}}
 
             <div class="block-header">Past data</div>
-                <div class="list">
-                    <ul>
-                        {{#each prev}}
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                    <div class="item-title">{{sleep}} hours</div>
-                                    <div class="item-after">{{js "new Date(this.date).toISOString().slice(0, 10)"}}</div>
-                                </div>
+            <div class="list">
+                <ul>
+                    {{#each prev}}
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">{{sleep}} hours</div>
+                                <div class="item-after">{{js "new Date(this.date).toISOString().slice(0, 10)"}}</div>
                             </div>
-                        </li>
-                        {{/each}}
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+
+            <div class="block block-strong">
+                <canvas id="sleep-canvas" width="400" height="400"></canvas>
             </div>
         </div>
     </div>
@@ -74,8 +77,7 @@
             // show if last day is different than this day
             return {
                 show: lastDate.toISOString().slice(0, 10) != new Date().toISOString().slice(0, 10),
-                prev: app.data.sleep,
-                rand: Math.random()
+                prev: app.data.sleep
             }
         },
         // Component Methods
@@ -83,7 +85,7 @@
             submit: function () {
                 let d = app.form.convertToData('#sleep-form');
                 console.log(d);
-                
+
                 let sleep = 0;
                 let b = parseInt(d.bedtime.slice(0, 2));
                 let w = parseInt(d.wakeup.slice(0, 2));
@@ -102,13 +104,13 @@
                 // remove last one
                 if (app.data.sleep.length > 1)
                     app.data.sleep.splice(0, 1);
-                
+
                 console.log('on heree');
                 healthView.router.navigate('/task/', { animate: false, refreshCurrent: true });
                 setTimeout(() => {
                     healthView.router.navigate('/health/', { animate: false, refreshCurrent: true });
                 }, 50);
-                
+
 
                 $$('.sleep-badge').hide();
             }

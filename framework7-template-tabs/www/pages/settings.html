@@ -62,11 +62,15 @@
         // clear name
         $$('#category-popup input').val('');
 
+        function toUpper(str) {
+          return str[0].toUpperCase() + str.slice(1);
+        }
+
         $$('#category-popup-submit').once('click', e => {
           app.popup.close('#category-popup');
 
-          console.log(app.form.convertToData('#category-popup-form'));
-          app.data.categories.push(app.form.convertToData('#category-popup-form').name);
+          
+          app.data.categories.push(toUpper(app.form.convertToData('#category-popup-form').name));
 
           settingsView.router.navigate('/settings/', { reloadCurrent: true })
         });

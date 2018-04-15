@@ -50,6 +50,26 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="block-header">Past data</div>
+            <div class="list">
+                <ul>
+                    {{#each prev}}
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">{{cups}} cups</div>
+                                <div class="item-after">{{js "new Date(this.date).toISOString().slice(0, 10)"}}</div>
+                            </div>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+
+            <div class="block block-strong">
+                <canvas id="water-canvas" width="400" height="400"></canvas>
+            </div>
         </div>
     </div>
 </template>
@@ -70,7 +90,8 @@
 
             return {
                 cur: Math.round(cups*10)/10,
-                togo: Math.round((8-cups)*10)/10
+                togo: Math.round((8-cups)*10)/10,
+                prev: app.data.water
             }
         },
         // Component Methods

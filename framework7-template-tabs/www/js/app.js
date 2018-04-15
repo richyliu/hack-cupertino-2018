@@ -100,8 +100,32 @@ var app = new Framework7({
       ],
       water: [
         {
-          date: '2018-04-15',
+          date: '2018-04-08',
           cups: 7.4
+        },
+        {
+          date: '2018-04-09',
+          cups: 4
+        },
+        {
+          date: '2018-04-10',
+          cups: 9.8
+        },
+        {
+          date: '2018-04-11',
+          cups: 2.3
+        },
+        {
+          date: '2018-04-12',
+          cups: 8
+        },
+        {
+          date: '2018-04-13',
+          cups: 7.9
+        },
+        {
+          date: '2018-04-14',
+          cups: 7.1
         }
       ]
     };
@@ -178,12 +202,101 @@ const waterView = app.views.create('#view-water', {
       ctx.fillStyle = '#4286f4';
       ctx.strokeRect(100, 20, 100, 100);
       ctx.fillRect(100, 70, 100, 50);
+
+      var ctx = document.getElementById("water-canvas").getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: app.data.water.map(a => a.date),
+          datasets: [{
+            label: 'Cups drank',
+            data: app.data.water.map(a => a.cups),
+            backgroundColor: [
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
     }
   }
 });
 const healthView = app.views.create('#view-health', {
   url: '/health/',
-  iosSwipeBack: false
+  iosSwipeBack: false,
+  on: {
+    pageInit: function() {
+      var ctx = document.getElementById("sleep-canvas").getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: app.data.sleep.map(a => a.date),
+          datasets: [{
+            label: 'Hours slept',
+            data: app.data.sleep.map(a => a.sleep),
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(255,99,132,1)',
+              'rgba(255,99,132,1)',
+              'rgba(255,99,132,1)',
+              'rgba(255,99,132,1)',
+              'rgba(255,99,132,1)',
+              'rgba(255,99,132,1)',
+              'rgba(255,99,132,1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    }
+  }
 });
 const settingsView = app.views.create('#view-settings', {
   url: '/settings/'

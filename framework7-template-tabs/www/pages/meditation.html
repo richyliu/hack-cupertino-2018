@@ -3,7 +3,7 @@
         <div class="navbar">
             <div class="navbar-inner sliding">
                 <div class="left">
-                    <a href="#" class="link back">
+                    <a href="#" class="link back" @click="refreshHome">
                         <i class="icon icon-back"></i>
                         <span class="ios-only">Back</span>
                     </a>
@@ -493,10 +493,15 @@
             const videos = ["<iframe src=\"https://www.youtube.com/embed/1ZYbU82GVz4\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe src=\"https://www.youtube.com/embed/WivH_CMGWvg\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe src=\"https://www.youtube.com/embed/cSP3AOl07h0\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe src=\"https://www.youtube.com/embed/qlKhkxBvqyI\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>", "<iframe src=\"https://www.youtube.com/embed/fuTAlL4kpVQ\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>"]
             
 
-            app.data.happinessBoost += 25;
+            app.data.happinessBoost += 15;
             return {
                 video: videos[Math.floor(Math.random() * 5)]
             };
+        },
+        methods: {
+            refreshHome: function() {
+                homeView.router.navigate('/home/', { reloadCurrent: true });
+            }
         }
     }
 </script>
