@@ -19,7 +19,7 @@ Some notes:
     <meta name="theme-color" content="#2196f3">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <title>My App</title>
+    <title>Health Guru</title>
 
     <link rel="stylesheet" href="framework7/css/framework7.min.css">
     <link rel="stylesheet" href="css/icons.css">
@@ -79,15 +79,15 @@ Some notes:
                         <span class="tabbar-label">Task</span>
                     </a>
                     <a href="#view-health" class="tab-link">
-                        <i class="icon f7-icons ios-only">heart</i>
-                        <i class="icon f7-icons ios-only icon-ios-fill">heart_fill</i>
-                        <i class="icon material-icons md-only">heart_list</i>
-                        <span class="tabbar-label">Health</span>
-                    </a>
-                    <a href="#view-meditation" class="tab-link">
                         <i class="icon f7-icons ios-only">eye</i>
                         <i class="icon f7-icons ios-only icon-ios-fill">eye_fill</i>
                         <i class="icon material-icons md-only">eye</i>
+                        <span class="tabbar-label">Sleep</span>
+                    </a>
+                    <a href="#view-meditation" class="tab-link">
+                        <i class="icon f7-icons ios-only">heart</i>
+                        <i class="icon f7-icons ios-only icon-ios-fill">heart_fill</i>
+                        <i class="icon material-icons md-only">heart</i>
                         <span class="tabbar-label">Meditation</span>
                     </a>
                     <a href="#view-settings" class="tab-link">
@@ -113,12 +113,12 @@ Some notes:
         </div>
 
         <!-- Popup -->
-        <div class="popup" id="my-popup">
+        <div class="popup" id="task-popup">
             <div class="view">
                 <div class="page">
                     <div class="navbar">
                         <div class="navbar-inner">
-                            <div class="title">Popup</div>
+                            <div class="title">New Task</div>
                             <div class="right">
                                 <a href="#" class="link popup-close">Close</a>
                             </div>
@@ -126,14 +126,14 @@ Some notes:
                     </div>
                     <div class="page-content">
 
-                        <div class="list no-hairlines-md">
+                        <form id="task-popup-form" class="list no-hairlines-md">
                             <ul>
                                 <li>
                                     <div class="item-content item-input">
                                         <div class="item-inner">
                                             <div class="item-title item-label">Name</div>
                                             <div class="item-input-wrap">
-                                                <input type="text" placeholder="Task name" />
+                                                <input type="text" placeholder="Task name" name="name" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -143,10 +143,7 @@ Some notes:
                                         <div class="item-inner">
                                             <div class="item-title item-label">Category</div>
                                             <div class="item-input-wrap">
-                                                <select>
-                                                    <option>Lit</option>
-                                                    <option>Español</option>
-                                                </select>
+                                                <select id="category-options" name="category"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -156,7 +153,7 @@ Some notes:
                                         <div class="item-inner">
                                             <div class="item-title item-label">Due Date</div>
                                             <div class="item-input-wrap">
-                                                <input type="date" placeholder="Birth day" value="2014-04-30" />
+                                                <input type="date" placeholder="date" name="date"/>
                                             </div>
                                         </div>
                                     </div>
@@ -167,7 +164,7 @@ Some notes:
                                             <div class="item-title">Urgency</div>
                                             <div class="item-after">
                                                 <label class="toggle toggle-init">
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" value="true" name="urgent">
                                                     <span class="toggle-icon"></span>
                                                 </label>
                                             </div>
@@ -175,7 +172,42 @@ Some notes:
                                     </div>
                                 </li>
                             </ul>
+                        </form>
+                        <button class="button" id="task-popup-submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="popup" id="category-popup">
+            <div class="view">
+                <div class="page">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <div class="title">New Category</div>
+                            <div class="right">
+                                <a href="#" class="link popup-close">Close</a>
+                            </div>
                         </div>
+                    </div>
+                    <div class="page-content">
+
+                        <form class="list" id="category-popup-form">
+                            <ul>
+                                <li>
+                                    <div class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Name</div>
+                                            <div class="item-input-wrap">
+                                                <input type="text" placeholder="Category name" name="name"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                        <button class="button" id="category-popup-submit">Submit</button>
                     </div>
                 </div>
             </div>

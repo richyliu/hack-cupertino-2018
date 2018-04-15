@@ -2,14 +2,58 @@
     <div class="page">
         <div class="navbar">
             <div class="navbar-inner sliding">
-                <div class="left">
-                    <a href="#" class="link back">
-                        <i class="icon icon-back"></i>
-                        <span class="ios-only">Back</span>
-                    </a>
-                </div>
-                <div class="title">Component Page</div>
+                <div class="title">Sleep Data</div>
             </div>
+        </div>
+
+        <div class="page-content">
+            <div class="block block-strong">
+                Enter in when you went to sleep and woke up last night.
+            </div>
+
+            {{#if show}}
+            <form class="list inline-labels no-hairlines-md" id="sleep-form">
+                <ul>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Bedtime</div>
+                            <div class="item-input-wrap">
+                                <input type="time" value="22:00" name="bedtime">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Wake up time</div>
+                            <div class="item-input-wrap">
+                                <input type="time" value="07:00" name="wakeup">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <button class="button" @click="submit">Submit</button>
+            {{else}}
+            <div class="block">
+                You already entered in data for last night
+            </div>
+            {{/if}}
+
+            <div class="block-header">Past data</div>
+                <div class="list">
+                    <ul>
+                        {{#each prev}}
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">{{sleep}} hours</div>
+                                    <div class="item-after">{{js "this.date.toISOString().slice(0, 10)"}}</div>
+                                </div>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
         </div>
     </div>
 </template>
@@ -22,19 +66,40 @@
     return {
         // Component Data
         data: function () {
-            // Must return an object
+            if (app.data.sleep.length == 0) return { show: true };
+
+            let lastDate = app.data.sleep[app.data.sleep.length - 1].date;
+
+            // show if last day is different than this day
             return {
-                name: 'Jimmy',
-                age: 25,
-                like: ['Tennis', 'Chess', 'Football'],
+                show: lastDate.toISOString().slice(0, 10) != new Date().toISOString().slice(0, 10),
+                prev: app.data.sleep
             }
         },
         // Component Methods
         methods: {
-            openAlert: function () {
-                var self = this;
-                self.$app.dialog.alert('Hello World');
-            },
+            submit: function () {
+                let d = app.form.convertToData('#sleep-form');
+                let sleep = 0;
+                let b = parseInt(d.bedtime.slice(0, 2));
+                let w = parseInt(d.wakeup.slice(0, 2));
+                console.log(b, w);
+
+                if (b >= 12) {
+                    sleep = (24 - b) + w;
+                } else {
+                    sleep = w - b;
+                }
+
+                app.data.sleep.push({
+                    date: new Date(),
+                    sleep: sleep
+                });
+                // remove last one
+                app.data.sleep.splice(0, 1)
+
+                healthView.router.navigate('/health/', { animate: false, refreshCurrent: true });
+            }
         }
     }
 </script>

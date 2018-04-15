@@ -1,37 +1,80 @@
 <template>
-    <!-- Page, data-name contains page name which can be used in page callbacks -->
-    <div class="page">
-        <!-- Top Navbar -->
-        <div class="navbar">
-            <div class="navbar-inner">
-                <div class="title sliding">Settings</div>
-            </div>
+  <!-- Page, data-name contains page name which can be used in page callbacks -->
+  <div class="page">
+    <!-- Top Navbar -->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="title sliding">Settings</div>
+        <div class="right">
+          <a href="#" class="link" @click="addCategory">
+            <i class="icon f7-icons ios-only">add</i>
+            <i class="icon material-icons md-only">add</i>
+          </a>
         </div>
-
-        <div class="page-content">
-          
-        </div>
+      </div>
     </div>
+
+    <!-- Scrollable page content-->
+    <div class="page-content">
+
+      <div class="block-title">
+        Categories
+      </div>
+      <div class="list">
+        <ul>
+          {{#each categories}}
+          <li class="swipeout">
+            <div class="item-content swipeout-content">
+              <div class="item-inner">
+                <div class="item-title">{{this}}</div>
+              </div>
+            </div>
+            <div class="swipeout-actions-right">
+              <a href="#" class="swipeout-delete swipeout-overswipe" @click="removeCategory">Delete</a>
+            </div>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+
+    </div>
+  </div>
 </template>
 <style>
-    p {
-        margin: 10px 0;
-    }
+  p {
+    margin: 10px 0;
+  }
 </style>
 <script>
-    return {
-        // Component Data
-        data: function () {
-            // Must return an object
-            return {
-                tasks: this.$app.data.tasks
-            }
-        },
-        // Component Methods
-        methods: {
-            addList: function () {
-                console.log('add');
-            },
-        }
+  return {
+    // Component Data
+    data: function () {
+      // Must return an object
+      return {
+        categories: this.$app.data.categories
+      }
+    },
+    // Component Methods
+    methods: {
+      addCategory: function () {
+        // open popup
+        app.popup.open('#category-popup');
+        // clear name
+        $$('#category-popup input').val('');
+
+        $$('#category-popup-submit').once('click', e => {
+          app.popup.close('#category-popup');
+
+          console.log(app.form.convertToData('#category-popup-form'));
+          app.data.categories.push(app.form.convertToData('#category-popup-form').name);
+
+          settingsView.router.navigate('/settings/', { reloadCurrent: true })
+        });
+      },
+      removeCategory: function (e) {
+        let name = e.path[2].children[0].children[0].children[0].innerHTML;
+        this.$app.data.categories.splice(this.$app.data.categories.indexOf(name), 1);
+      }
     }
+  }
 </script>

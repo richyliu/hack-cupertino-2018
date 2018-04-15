@@ -6,7 +6,7 @@
             <div class="navbar-inner">
                 <div class="title sliding">Tasks</div>
                 <div class="right">
-                    <a href="#" class="link" @click="addList">
+                    <a href="#" class="link" @click="addTask">
                         <i class="icon f7-icons ios-only">add</i>
                         <i class="icon material-icons md-only">add</i>
                     </a>
@@ -25,29 +25,20 @@
                     {{#each tasks}}
                     <li class="swipeout">
                         <div class="swipeout-content">
-                            <a href="#" class="item-link item-content">
+                            <div class="item-content">
                                 <div class="item-inner">
                                     <div class="item-title-row">
                                         <div class="item-title">{{name}}</div>
-                                        <div class="item-after">17:14</div>
+                                        <div class="item-after">{{category}}</div>
                                     </div>
                                     <div class="item-text">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus
-                                        tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales
-                                        eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel
-                                        dui laoreet, commodo augue id, pulvinar lacus.
+                                        Due {{ date }}, {{js "this.urgent.length > 0 ? 'Urgent' : 'Not urgent'"}}
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                         <div class="swipeout-actions-left">
-                            <a href="#" class="color-green swipeout-overswipe alert-reply">Reply</a>
-                            <a href="#" class="color-blue alert-forward">Forward</a>
-                        </div>
-                        <div class="swipeout-actions-right">
-                            <a href="#" class="open-more-actions">More</a>
-                            <a href="#" class="color-orange alert-mark">Mark</a>
-                            <a href="#" data-confirm="Are you sure you want to delete this item?" class="swipeout-delete swipeout-overswipe">Delete</a>
+                            <a href="#" class="color-green swipeout-overswipe swipeout-delete alert-done" @click="markDone" data-id="{{@index}}">Done</a>
                         </div>
                     </li>
                     {{/each}}
@@ -73,9 +64,40 @@
         },
         // Component Methods
         methods: {
-            addList: function () {
-                app.popup.open('#my-popup');
+            addTask: function () {
+                // open popup
+                app.popup.open('#task-popup');
+                // set options to categories
+                $$('#category-options').html(app.data.categories.reduce((total, cur) => total + `<option>${cur}</option>`, ''))
+                // clear name
+                $$('#task-popup input').val('');
+                // set day to tomorrow
+                $$('#task-popup input[type="date"]').val(new Date().toISOString().slice(0, 10));
+
+                $$('#task-popup-submit').once('click', e => {
+                    app.popup.close('#task-popup');
+
+                    console.log(app.form.convertToData('#task-popup-form'));
+                    app.data.tasks.push(app.form.convertToData('#task-popup-form'));
+
+                    taskView.router.navigate('/task/', {reloadCurrent: true})
+                });
             },
+            markDone: function(e) {
+                let id = $$(e.target).data('id');
+                let t = app.data.tasks[id];
+
+                // add to done list
+                app.data.done.push({
+                    late: new Date(t.date) < new Date(),
+                    urgent: t.urgent.length > 0
+                });
+
+                // remove task from global list
+                app.data.tasks.splice(id, 1);
+
+                taskView.router.navigate('/task/', {reloadCurrent: true})
+            }
         }
     }
 </script>

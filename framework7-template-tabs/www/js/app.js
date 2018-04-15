@@ -12,15 +12,67 @@ var app = new Framework7({
     return {
       happiness: 25,
       tasks: [
-          {
-              name: 'test1'
-          },
-          {
-              name: 'test2'
-          },
-          {
-              name: 'test3'
-          },
+        {
+          name: 'Essay',
+          category: 'Lit',
+          date: '2018-4-20',
+          urgent: []
+        },
+        {
+          name: 'Temp check',
+          category: 'Bio',
+          date: '2018-4-21',
+          urgent: [""]
+        },
+        {
+          name: 'Chapter 14 quiz',
+          category: 'Math',
+          date: '2018-4-12',
+          urgent: [""]
+        },
+        {
+          name: 'Volleyball test',
+          category: 'P.E.',
+          date: '2018-4-10',
+          urgent: [""]
+        },
+      ],
+      done: [],
+      sleep: [
+        {
+          date: new Date('2018-4-8'),
+          sleep: 7
+        },
+        {
+          date: new Date('2018-4-9'),
+          sleep: 6
+        },
+        {
+          date: new Date('2018-4-10'),
+          sleep: 7
+        },
+        {
+          date: new Date('2018-4-11'),
+          sleep: 6
+        },
+        {
+          date: new Date('2018-4-12'),
+          sleep: 7
+        },
+        {
+          date: new Date('2018-4-13'),
+          sleep: 6
+        },
+        {
+          date: new Date('2018-4-14'),
+          sleep: 7
+        }
+      ],
+      categories: [
+        'Lit',
+        'Bio',
+        'P.E.',
+        'Math'
       ]
     };
   },
@@ -67,5 +119,10 @@ $$('#my-login-screen .login-button').on('click', function () {
 
 
 function reload(name) {
-  app.router.navigate(`/${name}/`, {reloadCurrent: true})
+  app.router.navigate(`/${name}/`, { reloadCurrent: true })
 }
+
+
+$$('#view-home').on('tab:show', () => {
+  homeView.router.navigate('/home/', { reloadCurrent: true });
+});
