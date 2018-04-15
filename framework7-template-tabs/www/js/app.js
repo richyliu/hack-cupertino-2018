@@ -124,33 +124,33 @@ const homeView = app.views.create('#view-home', {
       if (e.name == 'meditation') {
         var penColor = 'white';
 
-            window.setPixelColor = function(pixel) {
-            pixel.style.backgroundColor = penColor;
-            }
+        window.setPixelColor = function (pixel) {
+          pixel.style.backgroundColor = penColor;
+        }
 
-            window.setPenColor = function(color) {
-            penColor = color;
-            }
+        window.setPenColor = function (color) {
+          penColor = color;
+        }
 
-            window.reloadPage = function() {
-                window.location.reload();
-            }
+        window.reloadPage = function () {
+          window.location.reload();
+        }
 
-            window.getRandomImg = function() {
-                var a = Math.floor(Math.random() * 3);
+        window.getRandomImg = function () {
+          var a = Math.floor(Math.random() * 3);
 
-                if (a == 0) { return ("java.png"); }
-                else if (a == 1) { return ("bee.png"); }
-                else { return ("fire.png"); }
-            }
+          if (a == 0) { return ("java.png"); }
+          else if (a == 1) { return ("bee.png"); }
+          else { return ("fire.png"); }
+        }
 
-            function generateTag() {
-                var img = document.createElement('img');
-                img.setAttribute('src', getRandomImg());
-                document.getElementById('img-container').appendChild(img);
-            }
+        function generateTag() {
+          var img = document.createElement('img');
+          img.setAttribute('src', getRandomImg());
+          document.getElementById('img-container').appendChild(img);
+        }
 
-            generateTag();
+        generateTag();
       }
 
       $$('#logout').once('click', () => {
@@ -171,7 +171,7 @@ const taskView = app.views.create('#view-task', {
 const waterView = app.views.create('#view-water', {
   url: '/water/',
   on: {
-    pageInit: function() {
+    pageInit: function () {
       // initial draw @ 50% here
       var canvas = document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
@@ -281,7 +281,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       }, snapshot.val());
 
       // new day/no previous data
-      if (app.data.water.length == 0 || app.data.water[app.data.water.length-1].date != new Date().toISOString().slice(0, 10)) {
+      if (app.data.water.length == 0 || app.data.water[app.data.water.length - 1].date != new Date().toISOString().slice(0, 10)) {
         app.data.water.push({
           date: new Date().toISOString().slice(0, 10),
           cups: 0
@@ -289,7 +289,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       }
 
       // sleep gotton for today
-      if (app.data.sleep.length > 0 && app.data.sleep[app.data.sleep.length-1].date == new Date().toISOString().slice(0, 10)) {
+      if (app.data.sleep.length > 0 && app.data.sleep[app.data.sleep.length - 1].date == new Date().toISOString().slice(0, 10)) {
         $$('.sleep-badge').hide();
       }
 
@@ -313,3 +313,36 @@ firebase.auth().onAuthStateChanged(function (user) {
     // No user is signed in.
   }
 });
+
+
+
+var tourSteps = [
+  {
+    step: 0,
+    header: '1st Tour Step',
+    message: 'This is our first tour step.<br />Please click "next" or "back" to move forward and backwards respectively',
+    element: "body > div.views > div > div.toolbar > div > a:nth-child(1)",
+    action: function () {
+      console.log('Started guided tour');
+      console.log('Step 0');
+    }
+  },
+  {
+    step: 1,
+    header: '2nd Tour Step',
+    message: 'This is our seconds tour step.<br />You can use icons and images too! Wow!<br /><br /> F7 Icon:<br /> <i class="icon icon-back"></i><br /><br />Image:<br /> <div style="background-image: url(http://cdn.framework7.io/i/logo-new.png); width: 100px; height: 100px; background-size: cover; margin: 0 auto";></div><br />Please click "next" or "back" to move forward and backwards respectively',
+    element: "body > div.views > div > div.navbar > div > div.right > a",
+    action: function () {
+      console.log('Step 1');
+    }
+  },
+  {
+    step: 2,
+    header: '3rd and Final Step',
+    message: 'Congratulations! You have finished your Tour Guide tutorial. Enjoy it :D',
+    element: "body > div.views > div > div.navbar > div > div.right > a",
+    action: function () {
+      console.log('Step 2');
+      console.log('Last step on guided tour');
+    }
+  }];
