@@ -33,62 +33,62 @@ var app = new Framework7({
         {
           name: 'Essay',
           category: 'Lit',
-          date: '2018-4-20',
+          date: '2018-04-20',
           urgent: true
         },
         {
           name: 'Essay(x2)',
           category: 'Lit',
-          date: '2018-4-20',
+          date: '2018-04-20',
           urgent: false
         },
         {
           name: 'Temp check',
           category: 'Bio',
-          date: '2018-4-21',
+          date: '2018-04-21',
           urgent: true
         },
         {
           name: 'Chapter 14 quiz',
           category: 'Math',
-          date: '2018-4-12',
+          date: '2018-04-12',
           urgent: true
         },
         {
           name: 'Volleyball test',
           category: 'P.E.',
-          date: '2018-4-10',
+          date: '2018-04-10',
           urgent: true
         },
       ],
       done: [],
       sleep: [
         {
-          date: '2018-4-8',
+          date: '2018-04-08',
           sleep: 7
         },
         {
-          date: '2018-4-9',
+          date: '2018-04-09',
           sleep: 6
         },
         {
-          date: '2018-4-10',
+          date: '2018-04-10',
           sleep: 7
         },
         {
-          date: '2018-4-11',
+          date: '2018-04-11',
           sleep: 6
         },
         {
-          date: '2018-4-12',
+          date: '2018-04-12',
           sleep: 7
         },
         {
-          date: '2018-4-13',
+          date: '2018-04-13',
           sleep: 6
         },
         {
-          date: '2018-4-14',
+          date: '2018-04-14',
           sleep: 7
         }
       ],
@@ -195,7 +195,7 @@ $$('#view-meditation').on('tab:show', () => {
 app.loginScreen.open('#base-login-screen');
 
 $$('#sign-in').click(() => {
-  let username = $$('#sign-in-username').val();
+  let username = $$('#sign-in-username').val().trim();
   let password = $$('#sign-in-password').val();
   firebase.auth().signInWithEmailAndPassword(username, password).catch(function (error) {
     // Handle Errors here.
