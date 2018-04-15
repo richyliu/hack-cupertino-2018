@@ -1,0 +1,81 @@
+<template>
+    <!-- Page, data-name contains page name which can be used in page callbacks -->
+    <div class="page">
+        <!-- Top Navbar -->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="title sliding">Tasks</div>
+                <div class="right">
+                    <a href="#" class="link" @click="addList">
+                        <i class="icon f7-icons ios-only">add</i>
+                        <i class="icon material-icons md-only">add</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrollable page content-->
+        <div class="page-content">
+
+            <div class="block-title">
+                Tasks
+            </div>
+            <div class="list media-list">
+                <ul>
+                    {{#each tasks}}
+                    <li class="swipeout">
+                        <div class="swipeout-content">
+                            <a href="#" class="item-link item-content">
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title">{{name}}</div>
+                                        <div class="item-after">17:14</div>
+                                    </div>
+                                    <div class="item-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus
+                                        tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales
+                                        eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel
+                                        dui laoreet, commodo augue id, pulvinar lacus.
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swipeout-actions-left">
+                            <a href="#" class="color-green swipeout-overswipe alert-reply">Reply</a>
+                            <a href="#" class="color-blue alert-forward">Forward</a>
+                        </div>
+                        <div class="swipeout-actions-right">
+                            <a href="#" class="open-more-actions">More</a>
+                            <a href="#" class="color-orange alert-mark">Mark</a>
+                            <a href="#" data-confirm="Are you sure you want to delete this item?" class="swipeout-delete swipeout-overswipe">Delete</a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+<script>
+    return {
+        // Component Data
+        data: function () {
+            // Must return an object
+            return {
+                tasks: this.$app.data.tasks
+            }
+        },
+        // Component Methods
+        methods: {
+            addList: function () {
+                app.popup.open('#my-popup');
+            },
+        }
+    }
+</script>

@@ -1,0 +1,37 @@
+<template>
+    <!-- Page, data-name contains page name which can be used in page callbacks -->
+    <div class="page">
+        <!-- Top Navbar -->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="title sliding">Settings</div>
+            </div>
+        </div>
+
+        <div class="page-content">
+          
+        </div>
+    </div>
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+<script>
+    return {
+        // Component Data
+        data: function () {
+            // Must return an object
+            return {
+                tasks: this.$app.data.tasks
+            }
+        },
+        // Component Methods
+        methods: {
+            addList: function () {
+                console.log('add');
+            },
+        }
+    }
+</script>

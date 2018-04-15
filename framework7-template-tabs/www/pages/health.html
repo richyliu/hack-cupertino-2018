@@ -1,0 +1,40 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Component Page</div>
+            </div>
+        </div>
+    </div>
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+<script>
+    return {
+        // Component Data
+        data: function () {
+            // Must return an object
+            return {
+                name: 'Jimmy',
+                age: 25,
+                like: ['Tennis', 'Chess', 'Football'],
+            }
+        },
+        // Component Methods
+        methods: {
+            openAlert: function () {
+                var self = this;
+                self.$app.dialog.alert('Hello World');
+            },
+        }
+    }
+</script>

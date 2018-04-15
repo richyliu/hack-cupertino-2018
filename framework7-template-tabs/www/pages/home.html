@@ -1,0 +1,60 @@
+<template>
+    <!-- Page, data-name contains page name which can be used in page callbacks -->
+    <div class="page">
+        <!-- Top Navbar -->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="link icon-only panel-open" data-panel="left">
+                        <i class="icon f7-icons ios-only">menu</i>
+                        <i class="icon material-icons md-only">menu</i>
+                    </a>
+                </div>
+                <div class="title sliding">Home</div>
+                <div class="right">
+                    <a href="#" class="link icon-only panel-open" data-panel="right">
+                        <i class="icon f7-icons ios-only">menu</i>
+                        <i class="icon material-icons md-only">menu</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrollable page content-->
+        <div class="page-content">
+            <div class="block block-strong">
+                Welcome to Health Guru!
+            </div>
+
+            <div class="block block-strong">
+                <p>Happiness:</p>
+                <div class="progressbar color-red" data-progress="{{happiness}}">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+<script>
+    return {
+        // Component Data
+        data: function () {
+            console.log(this.$app);
+            return {
+                happiness: this.$app.data.happiness
+            };
+        },
+        // Component Methods
+        methods: {
+            openAlert: function () {
+                var self = this;
+                self.$app.dialog.alert('Hello World');
+            },
+        }
+    }
+</script>
