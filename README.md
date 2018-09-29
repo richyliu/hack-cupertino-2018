@@ -1,5 +1,5 @@
-# hack-cupertino-2018
+# Health Guru app
 
-submission for Richard, Jason, Abhinav
+This progressive web application allows you to track your todo list, sleep activities, and other esssential tasks to ensure you live a happy and fullfilling life.
 
-go to [https://richyliu.github.io/hack-cupertino-2018/framework7-template-tabs/www/](https://richyliu.github.io/hack-cupertino-2018/framework7-template-tabs/www/)
+Online at [https://richyliu.github.io/hack-cupertino-2018/framework7-template-tabs/www/](https://richyliu.github.io/hack-cupertino-2018/framework7-template-tabs/www/)
